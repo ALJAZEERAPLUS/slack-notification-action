@@ -1,0 +1,30 @@
+{
+  "name": "slack-message-github-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulanatol/slack-message-github-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raulanatol/slack-message-github-action/issues"
+  },
+  "homepage": "https://github.com/raulanatol/slack-message-github-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "2.1.1",
+    "@octokit/core": "3.1.4",
+    "node-fetch": "2.6.0"
+  },
+  "devDependencies": {
+    "jest": "26.6.1",
+    "jest-fetch-mock": "3.0.3"
+  }
+}
