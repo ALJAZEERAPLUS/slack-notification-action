@@ -3,9 +3,9 @@
 const fs = jest.createMockFromModule('@actions/github');
 
 fs.context = {
-    actor: 'leonardonelson91',
+    actor: 'vhsantos26',
     repo: {
-        repo: 'ajnewsmobile',
+        repo: 'ump',
         owner: 'ALJAZEERAPLUS'
     },
     workflow: 'Al Jazeera Github Actions CI/CD',

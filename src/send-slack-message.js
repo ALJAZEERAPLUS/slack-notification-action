@@ -79,11 +79,13 @@ async function getWorkflowStatus(repo, run_id, owner) {
 
     let status = 'success';
 
-    for(let i=0; i<response.data.jobs.length; i++) {
-        if(response.data.jobs[i].conclusion === 'cancelled') {
-            return response.data.jobs[i].conclusion;
-        } else if(response.data.jobs[i].conclusion === 'failure') {
-            status = 'failure';
+    const jobs = response.data.jobs;
+
+    for (let job of jobs) {
+        if(job.conclusion === 'cancelled') {
+            return job.conclusion
+        } else if(job.conclusion === 'failure') {
+            status = job.conclusion;
         }
     }
 

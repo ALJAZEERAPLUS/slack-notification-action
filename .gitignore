@@ -1,2 +1,6 @@
-node_modules/
+# sonar
+coverage
+test-report.xml
+
+node_modules
 package-lock.json

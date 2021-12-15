@@ -1,4 +1,4 @@
-const sendSlackMessage = require('./send-slack-message');
+const sendSlackMessage = require('../src/send-slack-message');
 
 const mockGithubActionsApiClient = require('@octokit/core');
 const mockInput = require('@actions/core');
