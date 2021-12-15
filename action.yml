@@ -22,6 +22,7 @@ inputs:
   run_id:
     description: 'The Github Actions Workflow Run ID'
     required: false
+    default: ${{ github.run_id }}
   notify_all:
     description: 'If enabled it will send the slack notification with "@here" to notify all slack channel members'
     required: false
