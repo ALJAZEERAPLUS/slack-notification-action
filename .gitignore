@@ -2,6 +2,3 @@
 coverage
 test-report.xml
 .scannerwork
-
-node_modules
-package-lock.json
