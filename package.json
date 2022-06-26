@@ -22,7 +22,7 @@
     "@actions/github": "2.1.1",
     "@octokit/core": "3.5.1",
     "jest-sonar-reporter": "2.0.0",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "jest": "27.4.5",
