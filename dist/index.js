@@ -28179,7 +28179,7 @@ async function generateSlackMessage(text) {
             {
                 "type": "button",
                 "text": "Pull Request",
-                "url": github.context.event.pull_request._links.html.href
+                "url": github.context.payload.pull_request.html_url
             }
         )
     };
