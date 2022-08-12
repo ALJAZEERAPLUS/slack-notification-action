@@ -139,6 +139,7 @@ async function generateSlackMessage(text) {
     ];
 
     if (reportLink) {
+        core.info('Adding report link.');
         attachments[0].actions.push(
             {
                 "type": "button",
@@ -148,12 +149,13 @@ async function generateSlackMessage(text) {
         )
     };
 
-    if (github.context.event_name === 'pull_request') {
-        attachments[0].fields.push(
+    if (github.context.eventName === 'pull_request') {
+        core.info('Adding pull request link.');
+        attachments[0].actions.push(
             {
                 "type": "button",
                 "text": "Pull Request",
-                "url": github.context.event.pull_request._links.html.href
+                "url": github.context.payload.pull_request.html_url
             }
         )
     };
