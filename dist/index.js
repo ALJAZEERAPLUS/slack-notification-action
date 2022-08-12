@@ -28179,6 +28179,8 @@ async function generateSlackMessage(text) {
         )
     };
 
+    core.info('Message generated with the following content: ' + JSON.stringify(attachments));
+
     return {
         channel,
         username,
