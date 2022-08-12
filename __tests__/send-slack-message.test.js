@@ -36,12 +36,13 @@ test('It should not include the report link in the message', async () => {
   fetch.mockResponseOnce(undefined);
   mockInput.__setInput('gha_api_token', undefined);
   mockInput.__setInput('status', 'cancelled');
+  mockInput.__setInput('report_link', '');
 
   await sendSlackMessage(mockGithubActionsApiClient);
 
   const message = JSON.parse(fetch.mock.calls[0][1].body);
 
-  expect(message.attachments[0].actions[2].url).toEqual("");
+  expect(message.attachments[0].actions.length).toEqual(2);
 });
 
 test('It should include the report link in the message', async () => {

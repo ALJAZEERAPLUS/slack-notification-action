@@ -105,46 +105,64 @@ async function generateSlackMessage(text) {
     const channel = core.getInput("slack_channel");
     const username = core.getInput("slack_username");
     const reportLink = (core.getInput("report_link") ? core.getInput("report_link") : "");
+
+    attachments = [
+        {
+            fallback: text,
+            color: getColor(status),
+            ts: Math.floor(Date.now() / 1000),
+            "fields": [
+                {
+                    "title": "Repository",
+                    "value": `<https://github.com/${owner}/${repo}|${owner}/${repo}>`,
+                    "short": true
+                },      
+                {
+                    "title": "Ref",
+                    "value": github.context.ref,
+                    "short": true
+                },                   
+            ],
+            "actions": [ 
+                {
+                    "type": "button",
+                    "text": "Commit", 
+                    "url": `https://github.com/${owner}/${repo}/commit/${sha}` 
+                },
+                {
+                    "type": "button",
+                    "text": "Action Details",
+                    "url": `https://github.com/${owner}/${repo}/actions/runs/${runId}` 
+                }
+            ]               
+        }
+    ];
+
+    if (reportLink) {
+        attachments[0].actions.push(
+            {
+                "type": "button",
+                "text": "Report",
+                "url": `${reportLink}` 
+            }
+        )
+    };
+
+    if (github.context.event_name === 'pull_request') {
+        attachments[0].fields.push(
+            {
+                "type": "button",
+                "text": "Pull Request",
+                "url": github.context.event.pull_request._links.html.href
+            }
+        )
+    };
+
     return {
         channel,
         username,
         text: getText(status),
-        attachments: [
-            {
-                fallback: text,
-                color: getColor(status),
-                ts: Math.floor(Date.now() / 1000),
-                "fields": [
-                    {
-                        "title": "Repository",
-                        "value": `<https://github.com/${owner}/${repo}|${owner}/${repo}>`,
-                        "short": true
-                    },      
-                    {
-                        "title": "Ref",
-                        "value": github.context.ref,
-                        "short": true
-                    },                   
-                ],
-                "actions": [ 
-                    {
-                        "type": "button",
-                        "text": "Commit", 
-                        "url": `https://github.com/${owner}/${repo}/commit/${sha}` 
-                    },
-                    {
-                        "type": "button",
-                        "text": "Action Details",
-                        "url": `https://github.com/${owner}/${repo}/actions/runs/${runId}` 
-                    },
-                    {
-                        "type": "button",
-                        "text": "Report",
-                        "url": `${reportLink}` 
-                    }
-                ]               
-            }
-        ]
+        attachments: attachments
     };
 }
 
