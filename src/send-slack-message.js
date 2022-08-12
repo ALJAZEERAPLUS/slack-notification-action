@@ -152,7 +152,7 @@ async function generateSlackMessage(text) {
     core.info(github.context.eventName);
     core.info(github.context.payload);
 
-    if (github.context.event_name === 'pull_request') {
+    if (github.context.eventName === 'pull_request') {
         core.info('Adding pull request link.');
         attachments[0].actions.push(
             {
