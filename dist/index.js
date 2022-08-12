@@ -28170,7 +28170,7 @@ async function generateSlackMessage(text) {
     };
 
     if (github.context.event_name === 'pull_request') {
-        attachments[0].fields.push(
+        attachments[0].actions.push(
             {
                 "type": "button",
                 "text": "Pull Request",
